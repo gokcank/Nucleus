@@ -124,7 +124,24 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      (İngilizce); dil değiştirme düğmesi yalnızca site arayüzünü (nav,
      ana sayfa metinleri) çeviriyor, bu iki belgeyi değil — bilinçli bir
      kapsam sınırı, belgelerin ayrıca çevrilmesi istenmedi.
-5. Nav/Footer ve genel layout — **sıradaki adım**.
+5. ~~Nav/Footer ve genel layout~~ — **tamamlandı**.
+   - `src/components/Nav.tsx`: üstte sabit (sticky), cam görünümlü bir üst
+     bar — logo + "Project Nucleus" yazısı (dar ekranlarda yalnızca logo),
+     Ana Sayfa/Yol Haritası/Kararlar bağlantıları (aktif sayfa vurgulu) ve
+     `Languages` ikonlu dil değiştirme düğmesi.
+   - `src/components/Footer.tsx`: kısa açıklama metni + bu sitenin kendi
+     kaynak koduna (`NucleusWeb`) ve ana uygulamanın MIT lisansına
+     (`ProjectNucleus` deposu) bağlantılar.
+   - **Düzeltilen hata:** Ana sayfadaki "GitHub'da Görüntüle" butonu adım
+     3'te yanlışlıkla bu web sitesinin kendi deposuna (`NucleusWeb`)
+     işaret ediyordu; asıl uygulama deposu olan `ProjectNucleus`'a
+     düzeltildi.
+   - **Düzeltilen mobil hata:** İlk halinde 420px gibi dar ekranlarda
+     marka yazısı satırı bölüp dil düğmesiyle çakışıyordu; dar ekranda
+     yazı gizlenip gezinme bağlantıları alt satıra alınarak düzeltildi —
+     Playwright ile 420px genişlikte doğrulandı.
+   - `App.tsx` artık `Nav`/`Footer`'ı sarıp sayfaları ortada gösteren ince
+     bir kabuk.
 6. GitHub Pages deploy workflow'u (GitHub Actions ile `actions/deploy-pages`,
    henüz kurulmadı) — repo adı/özel domain netleşince `vite.config.ts`'deki
    `base` değeri buna göre ayarlanmalı, bu karar henüz verilmedi.

@@ -5,6 +5,11 @@ export const translations = {
     'nav.home': 'Home',
     'nav.roadmap': 'Roadmap',
     'nav.decisions': 'Decisions',
+    'nav.language': 'Switch language',
+
+    'footer.tagline': 'An independent web showcase for Project Nucleus.',
+    'footer.source': 'Site source',
+    'footer.license': 'MIT License',
 
     'home.title': 'Project Nucleus',
     'home.subtitle': 'A modular control center for Linux.',
@@ -44,6 +49,11 @@ export const translations = {
     'nav.home': 'Ana Sayfa',
     'nav.roadmap': 'Yol Haritası',
     'nav.decisions': 'Kararlar',
+    'nav.language': 'Dili değiştir',
+
+    'footer.tagline': "Project Nucleus için bağımsız bir web vitrini.",
+    'footer.source': 'Site kaynak kodu',
+    'footer.license': 'MIT Lisansı',
 
     'home.title': 'Project Nucleus',
     'home.subtitle': 'Linux için modüler bir kontrol merkezi.',

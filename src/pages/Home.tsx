@@ -15,7 +15,7 @@ import type { TranslationKey } from '../i18n/translations'
 import { Link } from '../router/Router'
 import heroImg from '../assets/hero.png'
 
-const REPO_URL = 'https://github.com/gokcank/NucleusWeb'
+const REPO_URL = 'https://github.com/gokcank/ProjectNucleus'
 
 const features: { icon: LucideIcon; titleKey: TranslationKey; descKey: TranslationKey }[] = [
   { icon: LayoutPanelTop, titleKey: 'feature.panel.title', descKey: 'feature.panel.desc' },
