@@ -13,7 +13,7 @@ import {
 import { useI18n } from '../i18n/I18nContext'
 import type { TranslationKey } from '../i18n/translations'
 import { Link } from '../router/Router'
-import heroImg from '../assets/hero.png'
+import logoImg from '../assets/logo.png'
 
 const REPO_URL = 'https://github.com/gokcank/ProjectNucleus'
 
@@ -34,7 +34,7 @@ export function Home() {
   return (
     <div className="w-full max-w-5xl mx-auto px-6 py-8 flex flex-col items-center gap-16">
       <section className="text-center flex flex-col items-center gap-4 max-w-2xl">
-        <img src={heroImg} alt="" width={96} height={101} className="mb-2" />
+        <img src={logoImg} alt="" width={96} height={116} className="mb-2" />
         <h1 className="text-3xl">{t('home.title')}</h1>
         <p className="text-lg text-heading">{t('home.subtitle')}</p>
         <p className="text-text">{t('home.description')}</p>

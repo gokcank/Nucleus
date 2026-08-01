@@ -1,7 +1,7 @@
 import { Languages } from 'lucide-react'
 import { Link, useRoute } from '../router/Router'
 import { useI18n } from '../i18n/I18nContext'
-import heroImg from '../assets/hero.png'
+import logoImg from '../assets/logo.png'
 
 export function Nav() {
   const { path } = useRoute()
@@ -24,7 +24,7 @@ export function Nav() {
     <header className="sticky top-0 z-10 bg-surface backdrop-blur-[16px] border-b border-border">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <Link to="/" className="flex items-center gap-2 text-heading shrink-0">
-          <img src={heroImg} alt="" width={24} height={25} />
+          <img src={logoImg} alt="" width={24} height={29} />
           <span className="font-medium hidden sm:inline">Project Nucleus</span>
         </Link>
 
