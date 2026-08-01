@@ -142,10 +142,40 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      Playwright ile 420px genişlikte doğrulandı.
    - `App.tsx` artık `Nav`/`Footer`'ı sarıp sayfaları ortada gösteren ince
      bir kabuk.
-6. GitHub Pages deploy workflow'u (GitHub Actions ile `actions/deploy-pages`,
-   henüz kurulmadı) — repo adı/özel domain netleşince `vite.config.ts`'deki
-   `base` değeri buna göre ayarlanmalı, bu karar henüz verilmedi.
-7. Dev sunucusunu çalıştırıp tarayıcıda gözden geçirme.
+6. ~~GitHub Pages deploy workflow'u~~ — **tamamlandı**.
+   - **Karar (kullanıcıyla netleşti):** Proje sayfası olarak yayınlanacak —
+     `https://gokcank.github.io/NucleusWeb/`. Özel alan adı yok.
+   - `vite.config.ts`: `base`, sadece `vite build` sırasında
+     `/NucleusWeb/` oluyor (dev sunucusunda hâlâ `/` — yerel geliştirme
+     etkilenmedi).
+   - `src/router/Router.tsx` taban yola duyarlı hale getirildi: uygulama
+     içindeki rotalar hep temiz kalıyor (`/`, `/roadmap`, `/decisions`),
+     `import.meta.env.BASE_URL` üzerinden gerçek adresle
+     eklenip/çıkarılıyor — taban yol ileride değişirse (örn. özel domain)
+     tek değişiklik yeri `vite.config.ts` olacak.
+   - **GitHub Pages'in statik barındırmada sunucu taraflı yönlendirme
+     yapmaması sorunu:** `/NucleusWeb/roadmap` gibi bir adrese doğrudan
+     gidildiğinde (ya da sayfa yenilendiğinde) eşleşen bir dosya
+     bulunamıyor. Çözüm: `package.json`'a bir `postbuild` betiği eklendi
+     (`dist/index.html`'i `dist/404.html`'e kopyalıyor). GitHub Pages
+     404 durumunda bu dosyanın içeriğini döndürüyor; adres çubuğundaki
+     gerçek yol değişmediği için istemci taraflı router doğru sayfayı
+     render ediyor — karmaşık bir yönlendirme hilesi gerekmedi.
+   - `.github/workflows/deploy.yml`: `main`'e push'ta tetiklenen, `npm ci`
+     + `npm run build` yapıp `actions/upload-pages-artifact` +
+     `actions/deploy-pages` ile yayınlayan standart bir workflow.
+   - **Kullanıcının GitHub'da yapması gereken tek şey:** Repo
+     Settings → Pages → Source kısmını "GitHub Actions" olarak
+     ayarlamak (bu, Claude Code'un otomatikleştiremeyeceği bir GitHub UI
+     adımı).
+   - Doğrulama: gerçek bir statik dosya sunucusu ile (`dist/` içeriğini,
+     GitHub Pages'in 404 davranışını taklit edecek şekilde) yerel olarak
+     simüle edildi — doğrudan derin bağlantı, taban yoldan varlık
+     yükleme, geri/ileri gezinme ve dil değiştirme Playwright ile
+     doğrulandı, konsol hatası yok. Ayrıca yerel `npm run dev`'in hâlâ
+     kök dizinde (taban yolsuz) sorunsuz çalıştığı da ayrıca test edildi.
+7. ~~Dev sunucusunu çalıştırıp tarayıcıda gözden geçirme~~ — her adımda
+   zaten Playwright ile yapılıyor, ayrı bir adım olarak kapatıldı.
 
 ## 5. Tasarım referansı
 
@@ -171,10 +201,9 @@ altında mevcut.
 
 ## 7. Açık sorular
 
-- GitHub Pages nasıl servis edilecek: proje bazlı (muhtemelen
-  `gokcank.github.io/NucleusWeb`, repo adı bu şekilde belirlendi) mi, yoksa
-  özel domain mi? `vite.config.ts`'deki `base` ayarını etkiliyor, kesin karar
-  adım 6'da verilecek.
+- ~~GitHub Pages nasıl servis edilecek~~ — **çözüldü**: proje sayfası olarak,
+  `gokcank.github.io/NucleusWeb`. Kalan tek manuel adım: GitHub'da repo
+  Settings → Pages → Source'u "GitHub Actions" yapmak.
 - ~~Bu repo GitHub'a ne zaman/nasıl push edilecek~~ — **çözüldü**: repo
   `git init` edildi, `origin` olarak `git@github.com:gokcank/NucleusWeb.git`
   eklendi ve `main` dalı bir kez push edildi.

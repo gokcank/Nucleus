@@ -7,6 +7,24 @@ import {
   type ReactNode,
 } from 'react'
 
+// Vite's BASE_URL is '/' locally but '/NucleusWeb/' in the GitHub Pages
+// build (see vite.config.ts) — routes below are always app-relative
+// ('/', '/roadmap', ...) and this prefix is added/stripped at the edges
+// so the rest of the app never has to think about deployment path.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+function toAppPath(pathname: string): string {
+  if (BASE && pathname.startsWith(BASE)) {
+    const rest = pathname.slice(BASE.length)
+    return rest === '' ? '/' : rest
+  }
+  return pathname
+}
+
+function toFullPath(appPath: string): string {
+  return appPath === '/' ? `${BASE}/` : `${BASE}${appPath}`
+}
+
 interface RouterContextValue {
   path: string
   navigate: (path: string) => void
@@ -15,17 +33,17 @@ interface RouterContextValue {
 const RouterContext = createContext<RouterContextValue | null>(null)
 
 export function RouterProvider({ children }: { children: ReactNode }) {
-  const [path, setPath] = useState(window.location.pathname)
+  const [path, setPath] = useState(() => toAppPath(window.location.pathname))
 
   useEffect(() => {
-    const onPopState = () => setPath(window.location.pathname)
+    const onPopState = () => setPath(toAppPath(window.location.pathname))
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   const navigate = (next: string) => {
     if (next === path) return
-    window.history.pushState(null, '', next)
+    window.history.pushState(null, '', toFullPath(next))
     setPath(next)
   }
 
@@ -51,7 +69,7 @@ export function Link({
 
   return (
     <a
-      href={to}
+      href={toFullPath(to)}
       {...rest}
       onClick={(e) => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
