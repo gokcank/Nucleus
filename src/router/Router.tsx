@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from 'react'
 
-// Vite's BASE_URL is '/' locally but '/NucleusWeb/' in the GitHub Pages
+// Vite's BASE_URL is '/' locally but '/Nucleus/' in the GitHub Pages
 // build (see vite.config.ts) — routes below are always app-relative
 // ('/', '/roadmap', ...) and this prefix is added/stripped at the edges
 // so the rest of the app never has to think about deployment path.

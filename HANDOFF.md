@@ -130,10 +130,10 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      Ana Sayfa/Yol Haritası/Kararlar bağlantıları (aktif sayfa vurgulu) ve
      `Languages` ikonlu dil değiştirme düğmesi.
    - `src/components/Footer.tsx`: kısa açıklama metni + bu sitenin kendi
-     kaynak koduna (`NucleusWeb`) ve ana uygulamanın MIT lisansına
+     kaynak koduna (`Nucleus`) ve ana uygulamanın MIT lisansına
      (`ProjectNucleus` deposu) bağlantılar.
    - **Düzeltilen hata:** Ana sayfadaki "GitHub'da Görüntüle" butonu adım
-     3'te yanlışlıkla bu web sitesinin kendi deposuna (`NucleusWeb`)
+     3'te yanlışlıkla bu web sitesinin kendi deposuna (`Nucleus`)
      işaret ediyordu; asıl uygulama deposu olan `ProjectNucleus`'a
      düzeltildi.
    - **Düzeltilen mobil hata:** İlk halinde 420px gibi dar ekranlarda
@@ -144,9 +144,9 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      bir kabuk.
 6. ~~GitHub Pages deploy workflow'u~~ — **tamamlandı**.
    - **Karar (kullanıcıyla netleşti):** Proje sayfası olarak yayınlanacak —
-     `https://gokcank.github.io/NucleusWeb/`. Özel alan adı yok.
+     `https://gokcank.github.io/Nucleus/`. Özel alan adı yok.
    - `vite.config.ts`: `base`, sadece `vite build` sırasında
-     `/NucleusWeb/` oluyor (dev sunucusunda hâlâ `/` — yerel geliştirme
+     `/Nucleus/` oluyor (dev sunucusunda hâlâ `/` — yerel geliştirme
      etkilenmedi).
    - `src/router/Router.tsx` taban yola duyarlı hale getirildi: uygulama
      içindeki rotalar hep temiz kalıyor (`/`, `/roadmap`, `/decisions`),
@@ -154,7 +154,7 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      eklenip/çıkarılıyor — taban yol ileride değişirse (örn. özel domain)
      tek değişiklik yeri `vite.config.ts` olacak.
    - **GitHub Pages'in statik barındırmada sunucu taraflı yönlendirme
-     yapmaması sorunu:** `/NucleusWeb/roadmap` gibi bir adrese doğrudan
+     yapmaması sorunu:** `/Nucleus/roadmap` gibi bir adrese doğrudan
      gidildiğinde (ya da sayfa yenilendiğinde) eşleşen bir dosya
      bulunamıyor. Çözüm: `package.json`'a bir `postbuild` betiği eklendi
      (`dist/index.html`'i `dist/404.html`'e kopyalıyor). GitHub Pages
@@ -202,11 +202,19 @@ altında mevcut.
 ## 7. Açık sorular
 
 - ~~GitHub Pages nasıl servis edilecek~~ — **çözüldü**: proje sayfası olarak,
-  `gokcank.github.io/NucleusWeb`. Kalan tek manuel adım: GitHub'da repo
+  `gokcank.github.io/Nucleus`. Kalan tek manuel adım: GitHub'da repo
   Settings → Pages → Source'u "GitHub Actions" yapmak.
 - ~~Bu repo GitHub'a ne zaman/nasıl push edilecek~~ — **çözüldü**: repo
-  `git init` edildi, `origin` olarak `git@github.com:gokcank/NucleusWeb.git`
-  eklendi ve `main` dalı bir kez push edildi.
+  `git init` edildi, ilk push `git@github.com:gokcank/NucleusWeb.git`
+  adresine yapıldı.
+- **Site/depo adı değişti: `NucleusWeb` → `Nucleus`.** Kullanıcı site
+  adresinin `gokcank.github.io/Nucleus` olmasını istedi. Kod tarafında
+  (`vite.config.ts`'deki `base`, `Router.tsx`, `Footer.tsx`'teki kaynak
+  kod bağlantısı, bu belge) `Nucleus` olarak güncellendi ve yerel `origin`
+  adresi `git@github.com:gokcank/Nucleus.git` olarak değiştirildi.
+  **Kullanıcının GitHub'da yapması gereken:** deponun adını `NucleusWeb`'den
+  `Nucleus`'a çevirmek (Settings → General → Repository name) — `gh` CLI
+  bu ortamda kurulu olmadığı için bu adım otomatikleştirilemedi.
 
 ## 8. Git iş akışı kuralı
 

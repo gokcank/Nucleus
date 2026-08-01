@@ -1,6 +1,6 @@
 import { useI18n } from '../i18n/I18nContext'
 
-const SITE_REPO_URL = 'https://github.com/gokcank/NucleusWeb'
+const SITE_REPO_URL = 'https://github.com/gokcank/Nucleus'
 const LICENSE_URL = 'https://github.com/gokcank/ProjectNucleus/blob/main/LICENSE'
 
 export function Footer() {
