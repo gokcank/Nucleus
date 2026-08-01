@@ -1,14 +1,8 @@
 import { Link, useRoute } from './router/Router'
 import { useI18n } from './i18n/I18nContext'
 import { Home } from './pages/Home'
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <div className="glass-panel rounded-panel p-8 max-w-md text-center">
-      <h1 className="text-3xl">{title}</h1>
-    </div>
-  )
-}
+import { Roadmap } from './pages/Roadmap'
+import { Decisions } from './pages/Decisions'
 
 function Nav() {
   const { path } = useRoute()
@@ -38,16 +32,15 @@ function Nav() {
 
 function App() {
   const { path } = useRoute()
-  const { t } = useI18n()
 
   let page = <Home />
-  if (path === '/roadmap') page = <Placeholder title={t('nav.roadmap')} />
-  else if (path === '/decisions') page = <Placeholder title={t('nav.decisions')} />
+  if (path === '/roadmap') page = <Roadmap />
+  else if (path === '/decisions') page = <Decisions />
 
   return (
     <div className="min-h-svh flex flex-col">
       <Nav />
-      <div className="flex-1 flex items-center justify-center p-6">{page}</div>
+      <div className="flex-1 flex flex-col items-center">{page}</div>
     </div>
   )
 }

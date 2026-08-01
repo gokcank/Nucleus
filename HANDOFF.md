@@ -109,9 +109,22 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
    - Playwright ile (chromium-cli mevcut değildi, global `@playwright/test`
      paketinin çekirdek modülleri elle kullanıldı) ışık/koyu tema ve EN/TR
      geçişi görsel olarak doğrulandı — konsol hatası yok, düzen bozuk değil.
-4. Roadmap ve Kararlar sayfaları (`src/content/*.md`'den `react-markdown` ile
-   render) — **sıradaki adım**.
-5. Nav/Footer ve genel layout.
+4. ~~Roadmap ve Kararlar sayfaları~~ — **tamamlandı**.
+   - `src/pages/MarkdownPage.tsx`: `react-markdown` + `remark-gfm` ile
+     markdown'ı render eden ortak bileşen; `src/pages/Roadmap.tsx` ve
+     `src/pages/Decisions.tsx` bunu `src/content/*.md`'yi Vite'ın `?raw`
+     içe aktarımıyla besliyor.
+   - `src/index.css`'e UI_GUIDELINES tipografisine uygun bir `.prose`
+     yardımcı sınıfı eklendi (başlıklar, blockquote → vurgu kartı, tablo,
+     kod bloğu/satır içi kod, `hr` ayırıcılar). Kod bloğu arka planı için
+     yeni bir `--color-code-bg` token'ı eklendi.
+   - Playwright ile her iki sayfanın tamamı (tablo, blockquote, kod bloğu,
+     liste, `hr` dahil) görsel olarak kontrol edildi — konsol hatası yok.
+   - Not: markdown içerikleri (roadmap.md/decisions.md) tek dilde
+     (İngilizce); dil değiştirme düğmesi yalnızca site arayüzünü (nav,
+     ana sayfa metinleri) çeviriyor, bu iki belgeyi değil — bilinçli bir
+     kapsam sınırı, belgelerin ayrıca çevrilmesi istenmedi.
+5. Nav/Footer ve genel layout — **sıradaki adım**.
 6. GitHub Pages deploy workflow'u (GitHub Actions ile `actions/deploy-pages`,
    henüz kurulmadı) — repo adı/özel domain netleşince `vite.config.ts`'deki
    `base` değeri buna göre ayarlanmalı, bu karar henüz verilmedi.
@@ -129,8 +142,10 @@ altında mevcut.
 
 - Commit mesajlarında asla `Co-Authored-By: Claude` veya benzeri
   kullanılmayacak.
-- Model/efor önerdikten sonra kullanıcının `/model` ile açıkça seçim
-  yapmasını bekle — aynı model zaten aktif olsa bile sessizce ilerleme.
+- **Her yeni adıma başlamadan önce** (sadece sorulunca değil, proaktif olarak)
+  o adıma uygun bir model + efor seviyesi öner; sonra kullanıcının `/model`
+  ile açıkça seçim yapmasını bekle — aynı model zaten aktif olsa bile
+  sessizce ilerleme.
 - Kullanıcıya gösterilen plan ve raporlar düz dille yazılır — kod bloğu,
   sınıf/fonksiyon adı kullanılmadan.
 - Yeni klasör/mimari kararları (örn. bu projenin kendisi) gerekçelendirilmeli;
