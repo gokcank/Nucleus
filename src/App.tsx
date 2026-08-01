@@ -1,15 +1,6 @@
 import { Link, useRoute } from './router/Router'
 import { useI18n } from './i18n/I18nContext'
-
-function Home() {
-  const { t } = useI18n()
-  return (
-    <div className="glass-panel rounded-panel p-8 max-w-md text-center">
-      <h1 className="text-3xl">{t('home.title')}</h1>
-      <p className="mt-3 text-text">{t('home.subtitle')}</p>
-    </div>
-  )
-}
+import { Home } from './pages/Home'
 
 function Placeholder({ title }: { title: string }) {
   return (

@@ -99,9 +99,18 @@ Nucleus kendisi bir Tauri masaüstü uygulaması olduğu için tarayıcıda
      bunu otomatik yapıyor (test edildi), ama GitHub Pages statik hosting
      için bu genelde bir `404.html` → `index.html` yönlendirme hilesi ister.
      GitHub Pages dağıtımı kurulurken (adım 6) unutulmamalı.
-3. Ana sayfa (tanıtım) — **sıradaki adım**.
+3. ~~Ana sayfa (tanıtım)~~ — **tamamlandı**.
+   - `src/pages/Home.tsx`: hero bölümü (`hero.png`, başlık, alt başlık,
+     açıklama, "GitHub'da Görüntüle" ve "Yol Haritasına Bak" butonları) ve
+     README'deki özellik listesinden türetilmiş 8 kartlık bir ızgara
+     (`.glass-panel`, Lucide ikonları, EN/TR çevirisi).
+   - `src/i18n/translations.ts` genişletildi: hero + 8 özellik kartı için
+     EN/TR anahtarlar eklendi (toplam 25/25, iki dilde birebir eşleşiyor).
+   - Playwright ile (chromium-cli mevcut değildi, global `@playwright/test`
+     paketinin çekirdek modülleri elle kullanıldı) ışık/koyu tema ve EN/TR
+     geçişi görsel olarak doğrulandı — konsol hatası yok, düzen bozuk değil.
 4. Roadmap ve Kararlar sayfaları (`src/content/*.md`'den `react-markdown` ile
-   render).
+   render) — **sıradaki adım**.
 5. Nav/Footer ve genel layout.
 6. GitHub Pages deploy workflow'u (GitHub Actions ile `actions/deploy-pages`,
    henüz kurulmadı) — repo adı/özel domain netleşince `vite.config.ts`'deki
@@ -130,8 +139,17 @@ altında mevcut.
 
 ## 7. Açık sorular
 
-- GitHub Pages nasıl servis edilecek: proje bazlı (`kullanıcıadi.github.io/
-  nucleus-web`) mi, yoksa özel domain mi? `vite.config.ts`'deki `base`
-  ayarını etkiliyor, henüz karar verilmedi.
-- Bu repo GitHub'a ne zaman/nasıl push edilecek (repo henüz `git init`
-  edilmedi).
+- GitHub Pages nasıl servis edilecek: proje bazlı (muhtemelen
+  `gokcank.github.io/NucleusWeb`, repo adı bu şekilde belirlendi) mi, yoksa
+  özel domain mi? `vite.config.ts`'deki `base` ayarını etkiliyor, kesin karar
+  adım 6'da verilecek.
+- ~~Bu repo GitHub'a ne zaman/nasıl push edilecek~~ — **çözüldü**: repo
+  `git init` edildi, `origin` olarak `git@github.com:gokcank/NucleusWeb.git`
+  eklendi ve `main` dalı bir kez push edildi.
+
+## 8. Git iş akışı kuralı
+
+**Bundan sonra bu depoda yalnızca commit atılacak, `git push` çalıştırılmayacak
+— push'u kullanıcı kendisi yapacak.** Bu, önceki bir push onaylandıktan sonra
+kullanıcının kalıcı kural olarak istediği bir şey; tek seferlik onay olarak
+değil, her oturumda geçerli varsayılan olarak uygulanmalı.
