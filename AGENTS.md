@@ -31,6 +31,7 @@ Promo and documentation website for Project Nucleus (a Tauri desktop app, repo `
 - Roadmap/Decisions stay English-only unless translation is requested.
 
 ## Status (as of 2026-11-07)
+- Project status: **maintenance** (set 2026-11-18; source of truth: the brain page).
 - Feature-complete and live since 2026-08-01: home, roadmap, decisions, EN/TR toggle, logo and favicon.
 
 ## Open items
